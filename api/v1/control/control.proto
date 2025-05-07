@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package mission_control.api.v1.control;
+
+option go_package = "github.com/VeneLooool/mission-control/pkg/api/v1/control;control";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service MissionControl {
+  rpc SaveAnalyticResults(SaveAnalyticResults.Request) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/missions/{mission_id}/results"
+      body: "*"
+    };
+  }
+}
+
+message SaveAnalyticResults {
+  message Request {
+    uint64 mission_id = 1;
+  }
+}
